@@ -1,5 +1,5 @@
 # Framebuffer Graphics
-(I dont even think this is lib(s)vga...its "vTerm graphics".
+I dont even think this is lib(s)vga...its "vTerm graphics".
 
 ## Expect bugs
 (This code is work in progress-at best)
