@@ -1,4 +1,2 @@
-archive/*
-.vscode/
-fbdemo
+*.ppu
 *.o
