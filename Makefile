@@ -1,15 +1,13 @@
-CC=gcc
-CCFLAGS=-g -std=c99 -Wall -DDEBUG
-LFLAGS=-lm -lpng -ljpeg
-BINFILE=fbdemo
+CC=fpc
+BINFILE=PasFBdemo
 
 all: fbdemo
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $^ -o $@
+%.o: %.pas
+	$(CC)  -o $(BINFILE)
 
-fbdemo: main.o draw.o font.o img-png.o img-jpeg.o
-	$(CC) $(CFLAGS) $(LFLAGS) $^ -o $@
+fbdemo: main.pas draw.pas font.pas img-png.pas img-jpeg.pas
+	$(CC) -o $(BINFILE)
 
 clean: 
-	rm -rf *.o $(BINFILE)
+	rm -rf *.o *.ppu $(BINFILE)
