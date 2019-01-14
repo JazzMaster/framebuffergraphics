@@ -9,25 +9,51 @@ uses
 const
 	FONT_SIZE=8
 
-//bitmapped font- FF or 00
-charblock:array [0..7,0..7] of byte;
 
-Alpha:array[0..26] of charblock;
-Numbers:array[0..9] of charblock;
-ASCIISYMB1:array[0..15] of charblock;
-ASCIISYMB2:array[0..6] of charblock;
+type 
+PGlyph:^TGlyph;
+TGlyph=record
+  data:^Integer;
+  width:integer;
+  height:integer;
+  baseline_offset:integer;
+  centerline_offset:integer;
+end;
 
-LBRACKET:Charblock;
-RBRACKET:Charblock;
-BACKSLASH:Charblock;
-CARET:Charblock;
-UNDERSCORE:Charblock;
-BACKTICK:Charblock;
-LCURLYB:Charblock;
-RCURLYB:Charblock;
-VLINE:Charblock;
-TILDE:Charblock;
-NIL_CHAR:Charblock;
+PFontMap:^TFontMap;
+TFontMap=record
+  map:PGlyph;
+  size:integer;
+  max_height:integer;
+  max_width:integer;
+end;
+
+var
+
+	//bitmapped font- FF or 00
+	charblock:array [0..7,0..7] of byte;
+
+	Alpha:array[0..26] of charblock;
+	Numbers:array[0..9] of charblock;
+	ASCIISYMB1:array[0..15] of charblock;
+	ASCIISYMB2:array[0..6] of charblock;
+
+	LBRACKET:Charblock;
+	RBRACKET:Charblock;
+	BACKSLASH:Charblock;
+	CARET:Charblock;
+	UNDERSCORE:Charblock;
+	BACKTICK:Charblock;
+	LCURLYB:Charblock;
+	RCURLYB:Charblock;
+	VLINE:Charblock;
+	TILDE:Charblock;
+	NIL_CHAR:Charblock;
+
+
+procedure fontmap_free(fontmap:PFontMap);
+function fontmap_default:Pfontmap;
+procedure draw_string(x,y:integer; strint:PChar; fontmap:PFontMap; context:PContext);
 
 implementation
 
