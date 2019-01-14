@@ -1,31 +1,31 @@
-#ifndef __DRAW_H_
-#define __DRAW_H_
+TImage=record
+  data:^Integer;
+  width,height:integer;
+end;
 
-typedef struct {
-  int* data;
-  int width;
-  int height;
-} image_t;
+Tcontext=record
+  data:PInt;
+  width,height:integer;
+  fb_name:PChar;
+  fb_file_desc:integer;
+end;
 
-typedef struct {
-  int * data;
-  int width;
-  int height;
-  char * fb_name;
-  int fb_file_desc;
-} context_t;
+var
+	PContext:^Tcontext;
+	PImage:^TImage;
 
-void image_free(image_t * image);
-void set_pixel(int x, int y, context_t * context, int color);
-image_t * scale(image_t*image, int w, int h);
-void draw_array(int x, int y, int w, int h, int* array, context_t* context);
-void draw_image(int x, int y, image_t * image, context_t* context);
-void draw_rect(int x, int y, int w, int h, context_t* context, int color);
-void clear_context_color(context_t* context, int color);
-void clear_context(context_t* context);
-void test_pattern(context_t* context);
+procedure image_free(image:PImage);
+procedure set_pixel(x,y:integer; context:Pcontext; color:integer);
+function  scale(image:PImage, w,h:integer):Pimage;
+procedure draw_array(x,y,w,h:integer; someArray:PInt; context:Pcontext);
+procedure draw_image(x,y:integer; image:PImage, context:Pcontext);
+procedure draw_rect(x,y,w,h:integer; context:PContext,color:integer);
+procedure clear_context_color(context:PContext; color:integer);
+procedure clear_context(context:PContext;);
+procedure test_pattern(context:PContext;);
+procedure context_release(context:Pcontext);
+function context_create:Pcontext;
 
-void context_release(context_t * context);
-context_t * context_create();
 
-#endif
+uses
+	cthreads,strings,math,crt,ctypes,signals,BaseUnix,sysutils;
