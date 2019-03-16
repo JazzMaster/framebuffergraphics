@@ -1,34 +1,47 @@
-# Framebuffer Graphics
-I dont even think this is lib(s)vga...its "vTerm graphics".
+## Framebuffer Graphics
 
-## Expect bugs
-(This code is work in progress-at best)
+Framebuffer Graphics routines for Freepascal. 
 
-A TON of code from yesteryears (like 20 years ago) is starting to catch up with modern day programmers.
-As a result- we have a LOT of work to do.
+**Lazarus cant use this because X11 will never be active while using this code**
+
+(This is ported from C-more as proof of concept than anything.)
+The port is WIP- mostly there.
+
+
+BMP -> usually available no matter what
+libPNG -> use png unit in uses clause
+
+libJPEG (PasJPEG):
+(20 year old code -w shitty documentation)
+
+	use imjdmaster.pas or imjpeglib.pas
+	(basic bare-minimal decoding is in the files with this project)
+	
+---
+
+
+This code may or may not work with a KMS Kernel.
+
+-If it doesnt-
+
+Then we need to upgrade code to support KMS.
+
+---
 
 Personally- this X11 handshaking server/client BULLSHIT is a bit much.
-(You should see the KMS handshaking code- even in C- it looks like ass)
+(Glad I dont have to write it..)
 
-Reminds me of the Novell Netware 5 print server setup routine...
-(A->b->c->d->f->n  back to A, then C....then H - just to print.)
+### What does this accomplish?
 
-
-
+Its a fallback for other code- use it if you like(and can get it working)
 
 At it's heart, this project aims to allow programs running on a "small device" 
-(such as a raspberry pi) -or "not running X11" -to be able to draw graphics using a simple API
--SANS X11.
-
-The X11 interface code- and I do mean that- (because someone has some other hooks if it looks like running the BGI instead)
-is with the sdlBGI/Lazarus Graphics project Im hosting.
+(such as a raspberry pi) -or "not running X11" -to be able to draw graphics using a simple API.
 
 ## Dependencies
 
 Install `libpng-dev` and `libjpeg-dev` ONLY IF if you are using the PNG or JPEG
 functions.
 
-
-FPC DOES have hooks somewhere in the package tree- (just download FPC off GH and then look for it)
 (libJPEG is NOT easy to understand, nor from experience -easy to get working)
 
