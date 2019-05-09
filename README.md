@@ -2,24 +2,19 @@
 
 Framebuffer Graphics routines for Freepascal. 
 
-**Lazarus cant use this because X11 will never be active while using this code**
+Im not sure if PTC gives us FB or not-
+if not - we need to implement it.
 
-(This is ported from C-more as proof of concept than anything.)
-The port is WIP- mostly there.
+It gives us X11, OSX, and WinAPI.
+We dont need Xlib- we DO need: freeGLUT,GL,GLU
+	Xlib is a freeGLUT/GL depend(s).
 
-
-BMP -> usually available no matter what
-libPNG -> use png unit in uses clause
-
-libJPEG (PasJPEG):
-(20 year old code -w shitty documentation)
-
-	use imjdmaster.pas or imjpeglib.pas
-	(basic bare-minimal decoding is in the files with this project)
+	You can do GL with PTC.
 	
+FreeImage is better than this hackish code- GOD I H8 libJPEG.	
+
+
 ---
-
-
 This code may or may not work with a KMS Kernel.
 
 -If it doesnt-
@@ -27,9 +22,6 @@ This code may or may not work with a KMS Kernel.
 Then we need to upgrade code to support KMS.
 
 ---
-
-Personally- this X11 handshaking server/client BULLSHIT is a bit much.
-(Glad I dont have to write it..)
 
 ### What does this accomplish?
 
@@ -44,4 +36,4 @@ Install `libpng-dev` and `libjpeg-dev` ONLY IF if you are using the PNG or JPEG
 functions.
 
 (libJPEG is NOT easy to understand, nor from experience -easy to get working)
-
+PNG, BMP, and TGA(targa)- however- are easy to implement.
